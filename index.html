@@ -58,7 +58,7 @@
       </span>
       </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More Research
         </a>
@@ -76,7 +76,7 @@
             PhotoShape
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -88,12 +88,15 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">Contractive Diffusion Policies: Robust Action Diffusion via Contractive Score-based Sampling with Differential Equations</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
+            <!-- <span class="author-block">
               <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+            <span class="author-block"> -->
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <a>Anonymous Authors</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <!-- <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
             <span class="author-block">
               <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
             </span>
@@ -108,13 +111,13 @@
             </span>
             <span class="author-block">
               <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
+            </span> -->
           </div>
-
+<!--
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Washington,</span>
             <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
+          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -258,31 +261,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            Diffusion policies have emerged as powerful generative models for offline policy
+            learning, where their sampling process can be rigorously characterized by a score
+            function guiding an stochastic differential equation (SDE). However, the same
+            score-based SDE modeling that grants diffusion policies the flexibility to learn
+            diverse behavior also incurs discretization errors, large data requirements, and
+            inconsistencies in action generation. While not critical in image generation, these
+            inaccuracies compound and lead to failure in continuous control settings. We
+            introduce Contractive Diffusion Policies (CDPs) to induce contractive behavior
+            in the sampling flows of diffusion SDEs. Contraction pulls nearby flows closer
+            to enhance robustness against solver and score errors while mitigating unwanted
+            action variance. We develop an in-depth theoretical analysis along with a practical
+            implementation recipe to incorporate CDPs into existing diffusion policy architec-
+            tures with minimal modification and negligible computational cost. Empirically,
+            we evaluate CDPs for offline learning by conducting extensive experiments in sim-
+            ulation and real-world. Across benchmarks, CDPs often outperform base policies,
+            with pronounced benefits under data scarcity.
           </p>
         </div>
       </div>
