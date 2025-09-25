@@ -136,7 +136,7 @@
                 </a>
               </span> -->
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -144,7 +144,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/google/nerfies"
@@ -189,6 +189,10 @@
       <img src="./static/images/method_large.jpg"
            alt="Method overview"
            style="max-width: 100%; height: auto;"/>
+
+              <figcaption class="has-text-centered is-size-6 has-text-grey">
+Offline training minimizes diffusion and contraction losses by computing the score Jacobian across denoising steps and penalizing it; at deployment, the frozen policy uses ODE sampling to generate actions from observations.
+      </figcaption>
       <h2 class="subtitle has-text-centered">
 
       </h2>
@@ -319,7 +323,7 @@ is frozen, and the ODE sampling process generates the actions given observations
 </section>
 
 <!-- Contractive Diffusion Policies -->
-<section class="section" id="cdp">
+<section class="section section--light" id="cdp">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Contractive Diffusion Policies</h2>
     <p>
@@ -340,7 +344,7 @@ is frozen, and the ODE sampling process generates the actions given observations
 </section>
 
 <!-- Intuition -->
-<section class="section" id="intuition">
+<section class="section section--light" id="intuition">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Intuition</h2>
     <p>
@@ -364,67 +368,49 @@ is frozen, and the ODE sampling process generates the actions given observations
 
 
 
-<!-- Expremients -->
-<section class="section" id="expremients">
+<!-- Experiments -->
+<section class="section section--light" id="expremients">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Expremients</h2>
+    <h2 class="title is-3">Experiments</h2>
 
     <!-- Simulation -->
     <div class="content">
       <h3 class="title is-4">Simulation</h3>
-      <div class="columns is-variable is-5 is-vcentered">
-        <div class="column is-half">
-          <figure class="image">
-            <img src="./static/images/exp_sim1.png"
-                 alt="Simulation experiment 1"
-                 style="width:100%;height:auto;" />
-          </figure>
-        </div>
-        <div class="column is-half">
-          <figure class="image">
-            <img src="./static/images/exp_sim2.png"
-                 alt="Simulation experiment 2"
-                 style="width:100%;height:auto;" />
-          </figure>
-        </div>
-      </div>
-      <figcaption class="has-text-centered is-size-6 has-text-grey">
-        Experiments on reduced datasets. When training on only 10% of the original dataset size,
-        we observe that CDP decisively outperforms the baselines. This improvement stems from the
-        ability of contraction to dampen score-matching errors, which are amplified in low-data
-        regimes.
-      </figcaption>
+      <figure class="image">
+        <img
+          src="./static/images/low_data.png"
+          alt="Simulation results in low-data regime"
+          loading="lazy" decoding="async"
+          style="max-width:100%;height:auto;"
+        />
+        <figcaption class="has-text-centered is-size-6 has-text-grey">
+          Experiments on reduced datasets. When training on only 10% of the original dataset size,
+          we observe that CDP decisively outperforms the baselines. This improvement stems from the
+          ability of contraction to dampen score-matching errors, which are amplified in low-data
+          regimes.
+        </figcaption>
+      </figure>
     </div>
 
     <!-- Real World -->
     <div class="content" style="margin-top:2rem;">
       <h3 class="title is-4">Real World</h3>
-      <div class="columns is-variable is-5 is-vcentered">
-        <div class="column is-half">
-          <figure class="image">
-            <img src="./static/images/exp_real1.png"
-                 alt="Real world experiment 1"
-                 style="width:100%;height:auto;" />
-          </figure>
-        </div>
-        <div class="column is-half">
-          <figure class="image">
-            <img src="./static/images/exp_real2.png"
-                 alt="Real world experiment 2"
-                 style="width:100%;height:auto;" />
-          </figure>
-        </div>
-      </div>
-      <figcaption class="has-text-centered is-size-6 has-text-grey">
-        Experiments with the physical Franka arm. We execute each policy 20 times per task,
-        and report the average success rate and execution time. CDP often performs better than
-        standard DBC, particularly for the harder tasks: Slide and Peg.
-      </figcaption>
+      <figure class="image">
+        <img
+          src="./static/images/realworld.png"
+          alt="Real-world experiments on the Franka arm"
+          loading="lazy" decoding="async"
+          style="max-width:100%;height:auto;"
+        />
+        <figcaption class="has-text-centered is-size-6 has-text-grey">
+          Experiments with the physical Franka arm. We execute each policy 20 times per task,
+          and report the average success rate and execution time. CDP often performs better than
+          standard DBC, particularly for the harder tasks: Slide and Peg.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
-
-
 
 
 
