@@ -147,7 +147,7 @@
               </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/contractive-diffusion/contractive-diffusion-policy"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -157,7 +157,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/contractive-diffusion/contractive-diffusion-policy-realworld"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -365,6 +365,31 @@ is frozen, and the ODE sampling process generates the actions given observations
   </div>
 </section>
 
+
+
+<p class="content" style="margin-top:1rem;">
+  Contraction theory offers a flexible route to stability in policy learning beyond
+  Lyapunov/diffeomorphism constraints. Contractive Autoencoders penalize the encoder
+  Jacobian to resist input perturbations; analogously, CDP penalizes the score model’s
+  local sensitivity to discourage high gain and brittle behavior. Prior work shows that
+  enforcing contraction in diffusion sampling reduces score-matching and discretization
+  errors without retraining—principles CDP adapts with uniform contraction along reverse
+  ODE trajectories.
+</p>
+
+<figure class="image" style="margin-top:0.75rem;">
+  <img
+    src="./static/images/contract.png"
+    alt="Contraction effects on diffusion ODE flows in a 2D action space (fixed state)"
+    loading="lazy" decoding="async"
+    style="max-width:100%;height:auto;"
+  />
+  <figcaption class="has-text-centered is-size-6 has-text-grey">
+    ODE flows for a toy 2D action space. The example is designed for a 2D action space
+    with a fixed state, and portrays the way contraction affects the dynamics of diffusion
+    ODE flows.
+  </figcaption>
+</figure>
 
 
 
