@@ -190,16 +190,17 @@
            alt="Method overview"
            style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
-         Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
-produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean of
-distinct action modes, effectively mitigating inaccuracies from both the solver and score matching.
+
       </h2>
     </div>
   </div>
 </section>
 
 
-
+<!-- The policy is trained on offline data using both contraction and diffusion losses in Equa-
+tion 10. For each batch of data, the Jacobian of the score function, Jϵθ , is efficiently computed for all
+denoising steps, and is then penalized with the contraction loss. At deployment, the diffusion policy
+is frozen, and the ODE sampling process generates the actions given observations. -->
 
 <!-- <section class="hero teaser">
   <div class="container is-max-desktop">
@@ -321,12 +322,19 @@ distinct action modes, effectively mitigating inaccuracies from both the solver 
 <section class="section" id="cdp">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Contractive Diffusion Policies</h2>
+    <p>
+      Contractive Diffusion Policies (CDPs) enhance robustness by pulling noisy action trajectories
+      closer together, mitigating solver and score errors while stabilizing learning.
+    </p>
     <figure class="image">
-      <img
-        src="./static/images/concept.jpg"
-        alt="Contractive Diffusion Policies concept (cone)"
-        style="max-width:100%;height:auto;"
-      />
+      <img src="./static/images/concept.jpg"
+           alt="Contractive Diffusion Policies concept (cone)"
+           style="max-width:100%;height:auto;" />
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        Contractive diffusion dynamics improve the robustness to sampling, integration, and
+        score-matching errors, while also rendering the entire process less sensitive to the initial
+        action seed.
+      </figcaption>
     </figure>
   </div>
 </section>
@@ -335,33 +343,83 @@ distinct action modes, effectively mitigating inaccuracies from both the solver 
 <section class="section" id="intuition">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Intuition</h2>
+    <p>
+      Comparing CDP against vanilla diffusion during training illustrates how contraction reshapes
+      the sampling process, concentrating actions near meaningful modes for improved accuracy.
+    </p>
     <figure class="image">
-      <img
-        src="./static/images/epochs.png"
-        alt="Training intuition across epochs"
-        style="max-width:100%;height:auto;"
-      />
+      <img src="./static/images/epochs.png"
+           alt="Training intuition across epochs"
+           style="max-width:100%;height:auto;" />
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
+        produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean
+        of distinct action modes, effectively mitigating inaccuracies from both the solver and score
+        matching.
+      </figcaption>
     </figure>
   </div>
 </section>
 
-<!-- Expremients (two images side by side) -->
+
+
+
+<!-- Expremients -->
 <section class="section" id="expremients">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Expremients</h2>
-    <div class="columns is-variable is-5 is-vcentered">
-      <div class="column is-half">
-        <figure class="image">
-          <img src="./static/images/realworld.png" alt="Real World Experiment" style="width:100%;height:auto;" />
-        </figure>
-        <p class="has-text-centered is-size-6 has-text-grey">Experiment A</p>
+
+    <!-- Simulation -->
+    <div class="content">
+      <h3 class="title is-4">Simulation</h3>
+      <div class="columns is-variable is-5 is-vcentered">
+        <div class="column is-half">
+          <figure class="image">
+            <img src="./static/images/exp_sim1.png"
+                 alt="Simulation experiment 1"
+                 style="width:100%;height:auto;" />
+          </figure>
+        </div>
+        <div class="column is-half">
+          <figure class="image">
+            <img src="./static/images/exp_sim2.png"
+                 alt="Simulation experiment 2"
+                 style="width:100%;height:auto;" />
+          </figure>
+        </div>
       </div>
-      <div class="column is-half">
-        <figure class="image">
-          <img src="./static/images/low_data.png" alt="Simulation Results" style="width:100%;height:auto;" />
-        </figure>
-        <p class="has-text-centered is-size-6 has-text-grey">Experiment B</p>
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        Experiments on reduced datasets. When training on only 10% of the original dataset size,
+        we observe that CDP decisively outperforms the baselines. This improvement stems from the
+        ability of contraction to dampen score-matching errors, which are amplified in low-data
+        regimes.
+      </figcaption>
+    </div>
+
+    <!-- Real World -->
+    <div class="content" style="margin-top:2rem;">
+      <h3 class="title is-4">Real World</h3>
+      <div class="columns is-variable is-5 is-vcentered">
+        <div class="column is-half">
+          <figure class="image">
+            <img src="./static/images/exp_real1.png"
+                 alt="Real world experiment 1"
+                 style="width:100%;height:auto;" />
+          </figure>
+        </div>
+        <div class="column is-half">
+          <figure class="image">
+            <img src="./static/images/exp_real2.png"
+                 alt="Real world experiment 2"
+                 style="width:100%;height:auto;" />
+          </figure>
+        </div>
       </div>
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        Experiments with the physical Franka arm. We execute each policy 20 times per task,
+        and report the average success rate and execution time. CDP often performs better than
+        standard DBC, particularly for the harder tasks: Slide and Peg.
+      </figcaption>
     </div>
   </div>
 </section>
