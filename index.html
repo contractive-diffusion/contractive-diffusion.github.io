@@ -291,7 +291,7 @@ is frozen, and the ODE sampling process generates the actions given observations
           <p>
             Diffusion policies have emerged as powerful generative models for offline policy
             learning, where their sampling process can be rigorously characterized by a score
-            function guiding an stochastic differential equation (SDE). However, the same
+            function guiding a stochastic differential equation (SDE). However, the same
             score-based SDE modeling that grants diffusion policies the flexibility to learn
             diverse behavior also incurs discretization errors, large data requirements, and
             inconsistencies in action generation. While not critical in image generation, these
@@ -365,9 +365,6 @@ is frozen, and the ODE sampling process generates the actions given observations
     </figure>
 
     <p class="content" style="margin-top:1rem;">
-      Contraction theory offers a flexible route to stability in policy learning beyond
-      Lyapunov/diffeomorphism constraints. Contractive Autoencoders penalize the encoder Jacobian
-      to resist input perturbations; analogously, CDP penalizes the score model’s local sensitivity.
       Prior work shows contraction in diffusion sampling reduces score-matching and discretization errors;
       CDP adapts this with uniform contraction along reverse ODE trajectories.
     </p>

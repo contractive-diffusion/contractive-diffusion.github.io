@@ -162,3 +162,4 @@ section.section--light {
 }
 section.section--light .title { color: #111827 !important; font-weight: 600; }
 section.section--light figcaption { color: #6b7280 !important; }
+#cdp figure, #intuition figure, #expremients figure { margin-top: 1rem; }
