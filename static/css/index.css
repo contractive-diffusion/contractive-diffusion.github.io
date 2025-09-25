@@ -156,10 +156,9 @@ body {
   border-radius: 5px;
 }
 
-
-.section--light {
-  background-color: #ffffff;
-  color: #1f2937;
+section.section--light {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
 }
-.section--light .title { color: #111827; font-weight: 600; }
-.section--light figcaption { color: #6b7280; }
+section.section--light .title { color: #111827 !important; font-weight: 600; }
+section.section--light figcaption { color: #6b7280 !important; }
