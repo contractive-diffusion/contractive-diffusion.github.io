@@ -346,52 +346,47 @@ is frozen, and the ODE sampling process generates the actions given observations
 <!-- Intuition -->
 <section class="section section--light" id="intuition">
   <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-10-tablet is-8-desktop is-7-widescreen">
-        <h2 class="title is-3">Intuition</h2>
-        <p>
-          Comparing CDP against vanilla diffusion during training illustrates how contraction reshapes
-          the sampling process, concentrating actions near meaningful modes for improved accuracy.
-        </p>
+    <h2 class="title is-3">Intuition</h2>
+    <p>
+      Comparing CDP against vanilla diffusion during training illustrates how contraction reshapes
+      the sampling process, concentrating actions near meaningful modes for improved accuracy.
+    </p>
 
-        <!-- First figure -->
-        <figure class="image">
-          <img src="./static/images/epochs.png"
-               alt="Training intuition across epochs"
-               style="max-width:100%;height:auto;" />
-          <figcaption class="has-text-centered is-size-6 has-text-grey">
-            Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
-            produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean
-            of distinct action modes, effectively mitigating inaccuracies from both the solver and score
-            matching.
-          </figcaption>
-        </figure>
+    <figure class="image">
+      <img src="./static/images/epochs.png"
+           alt="Training intuition across epochs"
+           style="max-width:100%;height:auto;" />
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
+        produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean
+        of distinct action modes, effectively mitigating inaccuracies from both the solver and score
+        matching.
+      </figcaption>
+    </figure>
 
-        <!-- Appendix blurb + second figure -->
-        <p class="content" style="margin-top:1rem;">
-          Contraction theory offers a flexible route to stability in policy learning beyond
-          Lyapunov/diffeomorphism constraints. Contractive Autoencoders penalize the encoder Jacobian
-          to resist input perturbations; analogously, CDP penalizes the score model’s local sensitivity.
-          Prior work shows contraction in diffusion sampling reduces score-matching and discretization errors;
-          CDP adapts this with uniform contraction along reverse ODE trajectories.
-        </p>
+    <p class="content" style="margin-top:1rem;">
+      Contraction theory offers a flexible route to stability in policy learning beyond
+      Lyapunov/diffeomorphism constraints. Contractive Autoencoders penalize the encoder Jacobian
+      to resist input perturbations; analogously, CDP penalizes the score model’s local sensitivity.
+      Prior work shows contraction in diffusion sampling reduces score-matching and discretization errors;
+      CDP adapts this with uniform contraction along reverse ODE trajectories.
+    </p>
 
-        <figure class="image" style="margin-top:0.75rem;">
-          <img
-            src="./static/images/contract.png"
-            alt="Contraction effects on diffusion ODE flows in a 2D action space (fixed state)"
-            loading="lazy" decoding="async"
-            style="max-width:100%;height:auto;"
-          />
-          <figcaption class="has-text-centered is-size-6 has-text-grey">
-            ODE flows for a toy 2D action space with a fixed state, showing how contraction affects
-            the dynamics of diffusion ODE flows.
-          </figcaption>
-        </figure>
-      </div>
-    </div>
+    <figure class="image" style="margin-top:0.75rem;">
+      <img
+        src="./static/images/contract.png"
+        alt="Contraction effects on diffusion ODE flows in a 2D action space (fixed state)"
+        loading="lazy" decoding="async"
+        style="max-width:100%;height:auto;"
+      />
+      <figcaption class="has-text-centered is-size-6 has-text-grey">
+        ODE flows for a toy 2D action space with a fixed state, showing how contraction affects
+        the dynamics of diffusion ODE flows.
+      </figcaption>
+    </figure>
   </div>
 </section>
+
 
 
 <!-- Experiments -->
