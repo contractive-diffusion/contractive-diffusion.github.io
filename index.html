@@ -162,7 +162,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (Sim)</span>
+                  <span>Code (Deployment)</span>
                   </a>
               </span>
               <!-- Dataset Link. -->
@@ -190,7 +190,9 @@
            alt="Method overview"
            style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
-        Contractive Diffusion Policies – Method overview.
+         Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
+produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean of
+distinct action modes, effectively mitigating inaccuracies from both the solver and score matching.
       </h2>
     </div>
   </div>
@@ -288,15 +290,12 @@
             score-based SDE modeling that grants diffusion policies the flexibility to learn
             diverse behavior also incurs discretization errors, large data requirements, and
             inconsistencies in action generation. While not critical in image generation, these
-            inaccuracies compound and lead to failure in continuous control settings. We
-            introduce Contractive Diffusion Policies (CDPs) to induce contractive behavior
+            inaccuracies compound and lead to failure in continuous control settings.
+            We introduce Contractive Diffusion Policies (CDPs) to induce contractive behavior
             in the sampling flows of diffusion SDEs. Contraction pulls nearby flows closer
             to enhance robustness against solver and score errors while mitigating unwanted
-            action variance. We develop an in-depth theoretical analysis along with a practical
-            implementation recipe to incorporate CDPs into existing diffusion policy architec-
-            tures with minimal modification and negligible computational cost. Empirically,
-            we evaluate CDPs for offline learning by conducting extensive experiments in sim-
-            ulation and real-world. Across benchmarks, CDPs often outperform base policies,
+            action variance. We develop an in-depth theoretical analysis along with a practical implementation recipe to incorporate CDPs into existing diffusion policy architectures with minimal modification and negligible computational cost. Empirically, we evaluate CDPs for offline learning by conducting extensive experiments in
+            simulation and real-world. Across benchmarks, CDPs often outperform base policies,
             with pronounced benefits under data scarcity.
           </p>
         </div>
@@ -318,30 +317,68 @@
   </div>
 </section>
 
-
-<section class="hero teaser" id="cdp-concept">
+<!-- Contractive Diffusion Policies -->
+<section class="section" id="cdp">
   <div class="container is-max-desktop">
-    <div class="hero-body">
+    <h2 class="title is-3">Contractive Diffusion Policies</h2>
+    <figure class="image">
       <img
         src="./static/images/concept.jpg"
         alt="Contractive Diffusion Policies concept (cone)"
-        style="max-width: 100%; height: auto;"
+        style="max-width:100%;height:auto;"
       />
-      <h2 class="subtitle has-text-centered">
-        Contractive Diffusion Policies — Concept illustration.
-      </h2>
+    </figure>
+  </div>
+</section>
+
+<!-- Intuition -->
+<section class="section" id="intuition">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Intuition</h2>
+    <figure class="image">
+      <img
+        src="./static/images/epochs.png"
+        alt="Training intuition across epochs"
+        style="max-width:100%;height:auto;"
+      />
+    </figure>
+  </div>
+</section>
+
+<!-- Expremients (two images side by side) -->
+<section class="section" id="expremients">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Expremients</h2>
+    <div class="columns is-variable is-5 is-vcentered">
+      <div class="column is-half">
+        <figure class="image">
+          <img src="./static/images/realworld.png" alt="Real World Experiment" style="width:100%;height:auto;" />
+        </figure>
+        <p class="has-text-centered is-size-6 has-text-grey">Experiment A</p>
+      </div>
+      <div class="column is-half">
+        <figure class="image">
+          <img src="./static/images/low_data.png" alt="Simulation Results" style="width:100%;height:auto;" />
+        </figure>
+        <p class="has-text-centered is-size-6 has-text-grey">Experiment B</p>
+      </div>
     </div>
   </div>
 </section>
 
 
+
+
+
+
+<!--
 <section class="section">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
+    <div class="columns is-centered"> -->
 
       <!-- Visual Effects. -->
-      <div class="column">
+      <!-- <div class="column">
         <div class="content">
           <h2 class="title is-3">Visual Effects</h2>
           <p>
@@ -353,11 +390,11 @@
                     type="video/mp4">
           </video>
         </div>
-      </div>
+      </div> -->
       <!--/ Visual Effects. -->
 
       <!-- Matting. -->
-      <div class="column">
+      <!-- <div class="column">
         <h2 class="title is-3">Matting</h2>
         <div class="columns is-centered">
           <div class="column content">
@@ -373,13 +410,13 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Matting. -->
 
     <!-- Animation. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
+        <h2 class="title is-3">Animation</h2> -->
 
         <!-- Interpolating. -->
         <!-- <h3 class="title is-4">Interpolating states</h3>
@@ -436,8 +473,8 @@
         </div> -->
         <!--/ Re-rendering. -->
 
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     <!--/ Animation. -->
 
 
@@ -468,8 +505,8 @@
     </div> -->
     <!--/ Concurrent Work. -->
 
-  </div>
-</section>
+  <!-- </div>
+</section> -->
 
 
 <!-- <section class="section" id="BibTeX">
