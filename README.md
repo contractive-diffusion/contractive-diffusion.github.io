@@ -1,6 +1,3 @@
 # Contractive Diffusion Policies (CDP) — Project Website
 
-
-
-
-This is the repository builds on top of [Nerfies website](https://nerfies.github.io).
+This borrows source code from the [Nerfies website](https://nerfies.github.io).
