@@ -3,4 +3,4 @@
 
 
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+This is the repository builds on top of [Nerfies website](https://nerfies.github.io).
