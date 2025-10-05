@@ -191,7 +191,7 @@
            style="max-width: 100%; height: auto;"/>
 
               <figcaption class="has-text-centered is-size-6 has-text-grey">
-Offline training minimizes diffusion and contraction losses by computing the score Jacobian across denoising steps and penalizing it; at deployment, the frozen policy uses ODE sampling to generate actions from observations.
+Offline training minimizes diffusion and contraction losses by computing the score Jacobian across denoising steps and penalizing its largest eigenvalues. At deployment, the frozen policy uses the now <strong>contractive</strong> ODE sampling to generate actions from observations.
       </figcaption>
       <h2 class="subtitle has-text-centered">
 
@@ -238,7 +238,8 @@ is frozen, and the ODE sampling process generates the actions given observations
             diverse behavior also incurs discretization errors, large data requirements, and
             inconsistencies in action generation. While not critical in image generation, these
             inaccuracies compound and lead to failure in continuous control settings.
-            We introduce Contractive Diffusion Policies (CDPs) to induce contractive behavior
+
+            We introduce <strong>Contractive Diffusion Policies (CDPs)</strong> to induce contractive behavior
             in the sampling flows of diffusion SDEs. Contraction pulls nearby flows closer
             to enhance robustness against solver and score errors while mitigating unwanted
             action variance. We develop an in-depth theoretical analysis along with a practical implementation recipe to incorporate CDPs into existing diffusion policy architectures with minimal modification and negligible computational cost. Empirically, we evaluate CDPs for offline learning by conducting extensive experiments in
@@ -277,7 +278,7 @@ is frozen, and the ODE sampling process generates the actions given observations
            alt="Contractive Diffusion Policies concept (cone)"
            style="max-width:100%;height:auto;" />
       <figcaption class="has-text-centered is-size-6 has-text-grey">
-        Contractive diffusion dynamics improve the robustness to sampling, integration, and
+        The figure illustrates how <strong>contractive</strong> diffusion sampling behaves in comparison to vanilla diffusion, highlighting its potential to mitigate integration, and
         score-matching errors, while also rendering the entire process less sensitive to the initial
         action seed.
       </figcaption>
@@ -290,7 +291,7 @@ is frozen, and the ODE sampling process generates the actions given observations
   <div class="container is-max-desktop">
     <h2 class="title is-3">Intuition</h2>
     <p>
-      Comparing CDP against vanilla diffusion during training illustrates how contraction reshapes
+      To take a closer look, we compare CDP against vanilla diffusion during training by <strong>sampling from the learned policy at each epoch</strong>. This illustrates how contraction reshapes
       the sampling process, concentrating actions near meaningful modes for improved accuracy.
     </p>
 
@@ -307,8 +308,7 @@ is frozen, and the ODE sampling process generates the actions given observations
     </figure>
 
     <p class="content" style="margin-top:1rem;">
-      Prior work shows contraction in diffusion sampling reduces score-matching and discretization errors;
-      CDP adapts this with uniform contraction along reverse ODE trajectories.
+      The following figure shows how contraction affects the generated flows in a toy ODE. Comparing these flows to one in the first figure, we observe why contraction proves useful in diffusion sampling.
     </p>
 
     <figure class="image" style="margin-top:2.0rem;">
@@ -333,7 +333,7 @@ is frozen, and the ODE sampling process generates the actions given observations
     <div class="container is-max-desktop">
       <h2 class="title is-3">Rollouts</h2>
       <p>
-        Video clips of real world and simulated (added soon) rollouts.
+        Video clips of real world and simulated (added soon) rollouts. CDP is mainly benchmarked in simulation, but we also deploy it on a real Franka robot arm to showcase its reliability in the real world.
       </p>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-lift">
