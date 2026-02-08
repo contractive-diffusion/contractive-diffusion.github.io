@@ -17,6 +17,9 @@ body {
   font-variant: small-caps;
 }
 
+.conference-badge {
+  margin: 1rem 0 1.5rem 0;
+}
 
 .teaser .hero-body {
   padding-top: 1.25rem;
