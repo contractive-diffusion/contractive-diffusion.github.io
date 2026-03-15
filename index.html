@@ -197,7 +197,7 @@
            style="max-width: 100%; height: auto;"/>
 
               <figcaption class="has-text-centered is-size-6 has-text-grey">
-Offline training minimizes diffusion and contraction losses by computing the score Jacobian across denoising steps and penalizing its largest eigenvalues. At deployment, the frozen policy uses the now <strong>contractive</strong> ODE sampling to generate actions from observations.
+<strong>Methodology overview of Contractive Diffusion Policies.</strong> Offline training minimizes diffusion and contraction losses by computing the score Jacobian across denoising steps and penalizing its largest eigenvalues. <br>At deployment, the frozen policy uses the now <strong>contractive</strong> ODE sampling to generate actions from observations.
       </figcaption>
       <h2 class="subtitle has-text-centered">
 
@@ -234,23 +234,23 @@ is frozen, and the ODE sampling process generates the actions given observations
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
             Diffusion policies have emerged as powerful generative models for offline policy
             learning, where their sampling process can be rigorously characterized by a score
             function guiding a stochastic differential equation (SDE). However, the same
-            score-based SDE modeling that grants diffusion policies the flexibility to learn
-            diverse behavior also incurs discretization errors, large data requirements, and
-            inconsistencies in action generation. While not critical in image generation, these
-            inaccuracies compound and lead to failure in continuous control settings.
+            score-based SDE modeling that grants diffusion policies the flexibility to learn diverse behavior also incurs <span style="color:#B174E7;">discretization errors, large data requirements, and
+              inconsistencies in action generation</span>. While not critical in image generation, these inaccuracies compound and lead to failure in continuous control settings.<br><br>
 
-            We introduce <strong>Contractive Diffusion Policies (CDPs)</strong> to induce contractive behavior
-            in the sampling flows of diffusion SDEs. Contraction pulls nearby flows closer
+            We introduce <strong>Contractive Diffusion Policies (CDPs)</strong> to induce contractive behavior in the sampling flows of diffusion SDEs. <span style="color:#6BB1FF;">Contraction pulls nearby flows closer
             to enhance robustness against solver and score errors while mitigating unwanted
-            action variance. We develop an in-depth theoretical analysis along with a practical implementation recipe to incorporate CDPs into existing diffusion policy architectures with minimal modification and negligible computational cost. Empirically, we evaluate CDPs for offline learning by conducting extensive experiments in
-            simulation and real-world. Across benchmarks, CDPs often outperform base policies,
-            with pronounced benefits under data scarcity.
+            action variance</span>. We develop an in-depth theoretical analysis along with a practical implementation recipe to incorporate CDPs into existing diffusion policy architectures with minimal modification and negligible computational cost. Empirically, we evaluate CDPs for offline learning by conducting extensive experiments in
+            simulation and real-world. 
+            
+            <br> <br> While much of today's robotics research is driven by ever larger models and empirical scaling laws, we show substantial and theoretically grounded improvements to the action diffusion process itself by encouraging contractive flows in diffusion sampling. Across various benchmarks, contractive policies yield:
+           <br> <br> ➤ <strong>higher average reward and success rates</strong> in offline learning settings, and
+           <br> ➤ <strong>minimal computational overhead</strong> with efficient eigenvalue computation. 
           </p>
         </div>
       </div>
@@ -274,10 +274,10 @@ is frozen, and the ODE sampling process generates the actions given observations
 <!-- Contractive Diffusion Policies -->
 <section class="section section--light" id="cdp">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Contractive Diffusion Policies</h2>
+    <h2 class="title is-3">Contractive Diffusion Sampling</h2>
     <p>
-      Contractive Diffusion Policies (CDPs) enhance robustness by pulling noisy action trajectories
-      closer together, mitigating solver and score errors while stabilizing learning.
+      CDPs enhance robustness by pulling noisy action trajectories
+      closer together through a contraction loss, which mitigates solver and score errors while stabilizing learning.
     </p>
     <figure class="image" style="margin-top:2.0rem;">
       <img src="./static/images/concept.jpg"
@@ -295,7 +295,7 @@ is frozen, and the ODE sampling process generates the actions given observations
 <!-- Intuition -->
 <section class="section section--light" id="intuition">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Intuition</h2>
+    <h2 class="title is-3">Contraction with a Toy Example</h2>
     <p>
       To take a closer look, we compare CDP against vanilla diffusion during training by <strong>sampling from the learned policy at each epoch</strong>. This illustrates how contraction reshapes
       the sampling process, concentrating actions near meaningful modes for improved accuracy.
@@ -306,7 +306,7 @@ is frozen, and the ODE sampling process generates the actions given observations
            alt="Training intuition across epochs"
            style="max-width:100%;height:auto;" />
       <figcaption class="has-text-centered is-size-6 has-text-grey">
-        Training CDP vs. vanilla diffusion on a 2D dataset. As training progresses, both methods
+        <strong>CDP vs. vanilla diffusion on a 2D dataset.</strong> As training progresses, both methods
         produce increasingly accurate samples. However, CDP samples tend to concentrate near the mean
         of distinct action modes, effectively mitigating inaccuracies from both the solver and score
         matching.
@@ -338,9 +338,9 @@ is frozen, and the ODE sampling process generates the actions given observations
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Rollouts</h2>
+      <h2 class="title is-3">Real-World Rollouts</h2>
       <p>
-        Video clips of real world and simulated (added soon) rollouts. CDP is mainly benchmarked in simulation, but we also deploy it on a real Franka robot arm to showcase its reliability in the real world.
+        CDP is benchmarked extensively on D4RL and Robomimic benchmarks in simulation, but we also deploy CDP on a real Franka robot arm to showcase its reliability in the real world. To make learning more challenging, we do not use a wrist view, <strong>only agent view observations</strong> are available to the model. This makes consistency of action generation even more critical, especially in Slide and Peg tasks.
       </p>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-lift">
@@ -376,7 +376,7 @@ is frozen, and the ODE sampling process generates the actions given observations
 <!-- Results -->
 <section class="section section--light" id="results">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Results</h2>
+    <h2 class="title is-3">Highlights of CDP Results</h2>
 
     <!-- Simulation -->
     <div class="content">
@@ -558,17 +558,21 @@ is frozen, and the ODE sampling process generates the actions given observations
 </section> -->
 
 
-<!-- <section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <pre><code>@inproceedings{
+abyaneh2026contractive,
+title={Contractive Diffusion Policies: Robust Action Diffusion via Contractive Score-Based Sampling with Differential Equations},
+author={Amin Abyaneh and Charlotte Morissette and Mohamad H. Danesh and Anas Houssaini and David Meger and Gregory Dudek and Hsiu-Chin Lin},
+booktitle={The Fourteenth International Conference on Learning Representations},
+year={2026},
+url={https://openreview.net/forum?id=iKJbmx1iuQ}
 }</code></pre>
   </div>
-</section> -->
+</section>
+
+
 
 
 <footer class="footer">
@@ -592,7 +596,8 @@ is frozen, and the ODE sampling process generates the actions given observations
           </p> -->
           <p>
 
-          The website template was partly borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a href="https://jonbarron.info/">Jon Barron</a>
+            The views expressed on this webpage are those of the main author and do not necessarily reflect the views of their collaborators.<br>
+            <br> <br> The website template was partly borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a href="https://jonbarron.info/">Jon Barron</a>
           </p>
         </div>
       </div>
